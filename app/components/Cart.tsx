@@ -31,7 +31,7 @@ function CartDetails({layout, cart}: CartMainProps) {
   const cartHasItems = !!cart && cart.totalQuantity > 0;
 
   return (
-    <div className="cart-details">
+    <div className="ml-4">
       <CartLines lines={cart?.lines} layout={layout} />
       {cartHasItems && (
         <CartSummary cost={cart.cost} layout={layout}>
@@ -81,9 +81,9 @@ function CartLineItem({
           alt={title}
           aspectRatio="1/1"
           data={image}
-          height={120}
+          height={100}
           loading="lazy"
-          width={120}
+          width={100}
         />
       )}
 
@@ -122,7 +122,7 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl: string}) {
   if (!checkoutUrl) return null;
 
   return (
-    <div className="mb-8">
+    <div className="mb-10">
       <a href="/checkout" target="_self">
         <Button>continue to checkout &rarr;</Button>
       </a>
@@ -141,7 +141,7 @@ export function CartSummary({
   layout: CartMainProps['layout'];
 }) {
   const className =
-    layout === 'page' ? 'cart-summary-page' : 'cart-summary-aside';
+    layout === 'page' ? 'cart-summary-page ml-4' : 'cart-summary-aside ml-4';
 
   return (
     <div aria-labelledby="cart-summary" className={className}>

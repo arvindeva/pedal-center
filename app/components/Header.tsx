@@ -137,7 +137,7 @@ function HeaderCtas({
                 <SheetClose asChild>
                   <NavLink
                     prefetch="intent"
-                    to="/contact"
+                    to="/pages/contact"
                     style={activeLinkStyle}
                     end
                   >
