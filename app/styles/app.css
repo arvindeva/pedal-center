@@ -89,7 +89,7 @@ aside li {
   transition: opacity 400ms ease-in-out;
   transition: opacity 400ms;
   visibility: hidden;
-  z-index: 10;
+  z-index: 50;
 }
 
 .overlay .close-outside {
@@ -154,27 +154,9 @@ aside li {
   grid-gap: 1rem;
 }
 
-.header-menu-desktop {
-  display: none;
-  grid-gap: 1rem;
-  @media (min-width: 45em) {
-    display: flex;
-    grid-gap: 1rem;
-    margin-left: 3rem;
-  }
-}
-
 .header-menu-item {
   cursor: pointer;
 }
-
-.header-ctas {
-  align-items: center;
-  display: flex;
-  grid-gap: 1rem;
-  margin-left: auto;
-}
-
 /*
 * --------------------------------------------------
 * components/Footer

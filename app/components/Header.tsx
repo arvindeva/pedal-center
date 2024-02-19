@@ -3,6 +3,17 @@ import {Suspense} from 'react';
 import type {HeaderQuery} from 'storefrontapi.generated';
 import type {LayoutProps} from './Layout';
 import {useRootLoaderData} from '~/root';
+import {Button} from './ui/button';
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '~/components/ui/sheet';
 
 type HeaderProps = Pick<LayoutProps, 'header' | 'cart' | 'isLoggedIn'>;
 
@@ -11,16 +22,18 @@ type Viewport = 'desktop' | 'mobile';
 export function Header({header, isLoggedIn, cart}: HeaderProps) {
   const {shop, menu} = header;
   return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong className="lowercase">{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+    <header className="py-4 sticky top-0 z-10 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
+      <div className="flex flex-row justify-between  px-4 mx-auto w-full max-w-screen-lg items-center">
+        <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+          <strong className="lowercase">{shop.name}</strong>
+        </NavLink>
+        <HeaderMenu
+          menu={menu}
+          viewport="desktop"
+          primaryDomainUrl={header.shop.primaryDomain.url}
+        />
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </div>
     </header>
   );
 }
@@ -46,41 +59,32 @@ export function HeaderMenu({
 
   return (
     <nav className={className} role="navigation">
-      {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={closeAside}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-        >
-          home
-        </NavLink>
-      )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
-        if (!item.url) return null;
+      <div className="hidden sm:flex flex-col md:flex-row md:gap-x-12">
+        {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+          if (!item.url) return null;
 
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={closeAside}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
+          // if the url is internal, we strip the domain
+          const url =
+            item.url.includes('myshopify.com') ||
+            item.url.includes(publicStoreDomain) ||
+            item.url.includes(primaryDomainUrl)
+              ? new URL(item.url).pathname
+              : item.url;
+          return (
+            <NavLink
+              className="header-menu-item"
+              end
+              key={item.id}
+              onClick={closeAside}
+              prefetch="intent"
+              style={activeLinkStyle}
+              to={url}
+            >
+              {item.title}
+            </NavLink>
+          );
+        })}
+      </div>
     </nav>
   );
 }
@@ -91,7 +95,6 @@ function HeaderCtas({
 }: Pick<HeaderProps, 'isLoggedIn' | 'cart'>) {
   return (
     <nav className="header-ctas" role="navigation">
-      <HeaderMenuMobileToggle />
       {/* <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">
@@ -99,7 +102,57 @@ function HeaderCtas({
           </Await>
         </Suspense>
       </NavLink> */}
-      <CartToggle cart={cart} />
+      <div className="flex flex-row gap-x-4 items-center">
+        <CartToggle cart={cart} />
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="block sm:hidden text-3xl"
+            >
+              ☰
+            </Button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Edit profile</SheetTitle>
+              <SheetClose asChild>
+                <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+                  home
+                </NavLink>
+              </SheetClose>
+              <SheetClose asChild>
+                <NavLink
+                  prefetch="intent"
+                  to="/collections/pedals"
+                  style={activeLinkStyle}
+                  end
+                >
+                  pedals
+                </NavLink>
+              </SheetClose>
+              <SheetClose asChild>
+                <NavLink
+                  prefetch="intent"
+                  to="/contact"
+                  style={activeLinkStyle}
+                  end
+                >
+                  contact
+                </NavLink>
+              </SheetClose>
+            </SheetHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-4 items-center gap-4"></div>
+              <div className="grid grid-cols-4 items-center gap-4"></div>
+            </div>
+            <SheetFooter>
+              <Button type="submit">Save changes</Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </div>
     </nav>
   );
 }
