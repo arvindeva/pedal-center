@@ -14,6 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '~/components/ui/sheet';
+import {ShoppingCart} from 'lucide-react';
 
 type HeaderProps = Pick<LayoutProps, 'header' | 'cart' | 'isLoggedIn'>;
 
@@ -170,7 +171,13 @@ function SearchToggle() {
 }
 
 function CartBadge({count}: {count: number}) {
-  return <a href="#cart-aside">Cart {count}</a>;
+  return (
+    <div>
+      <a href="#cart-aside" className="flex flex-row gap-x-2">
+        <ShoppingCart /> <div>({count})</div>
+      </a>
+    </div>
+  );
 }
 
 function CartToggle({cart}: Pick<HeaderProps, 'cart'>) {
