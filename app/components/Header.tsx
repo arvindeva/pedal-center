@@ -13,7 +13,7 @@ export function Header({header, isLoggedIn, cart}: HeaderProps) {
   return (
     <header className="header">
       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
+        <strong className="lowercase">{shop.name}</strong>
       </NavLink>
       <HeaderMenu
         menu={menu}
@@ -54,7 +54,7 @@ export function HeaderMenu({
           style={activeLinkStyle}
           to="/"
         >
-          Home
+          home
         </NavLink>
       )}
       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
@@ -99,7 +99,6 @@ function HeaderCtas({
           </Await>
         </Suspense>
       </NavLink> */}
-      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );

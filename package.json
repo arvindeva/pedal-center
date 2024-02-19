@@ -13,17 +13,24 @@
   },
   "prettier": "@shopify/prettier-config",
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "@remix-run/react": "^2.5.1",
     "@remix-run/server-runtime": "^2.5.1",
     "@shopify/cli": "3.52.0",
     "@shopify/cli-hydrogen": "^7.0.1",
     "@shopify/hydrogen": "~2024.1.1",
     "@shopify/remix-oxygen": "^2.0.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "embla-carousel-react": "^8.0.0-rc23",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "isbot": "^3.6.6",
+    "lucide-react": "^0.334.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.5.1",

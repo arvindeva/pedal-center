@@ -7,6 +7,13 @@ import type {
   RecommendedProductsQuery,
 } from 'storefrontapi.generated';
 import Hero from '~/components/Home/Hero';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '~/components/ui/carousel';
 
 export const meta: MetaFunction = () => {
   return [{title: 'Pedal Hub | Home'}];
@@ -60,29 +67,46 @@ function RecommendedProducts({
   products: Promise<RecommendedProductsQuery>;
 }) {
   return (
-    <div className="recommended-products">
-      <h2>Recommended Products</h2>
+    <div className="recommended-products max-w-screen-lg mx-auto px-12">
+      <h2>Recommended Productsss</h2>
       <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
           {({products}) => (
-            <div className="recommended-products-grid">
-              {products.nodes.map((product) => (
-                <Link
-                  key={product.id}
-                  className="recommended-product"
-                  to={`/products/${product.handle}`}
-                >
-                  <Image
-                    data={product.images.nodes[0]}
-                    aspectRatio="1/1"
-                    sizes="(min-width: 45em) 20vw, 50vw"
-                  />
-                  <h4>{product.title}</h4>
-                  <small>
-                    <Money data={product.priceRange.minVariantPrice} />
-                  </small>
-                </Link>
-              ))}
+            <div>
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {products.nodes.map((product, index) => (
+                    <CarouselItem key={product.id}>
+                      <Link
+                        key={product.id}
+                        className="recommended-product"
+                        to={`/products/${product.handle}`}
+                      >
+                        <div className="border-zinc-200 border rounded-2xl flex flex-row">
+                          <div className="w-1/2 p-8">
+                            <Image
+                              data={product.images.nodes[0]}
+                              aspectRatio="1/1"
+                              sizes="(min-width: 45em) 20vw, 50vw"
+                            />
+                          </div>
+                          <div className="w-1/2">
+                            <h4>{product.title}</h4>
+                            <p>{product.description}</p>
+                            <small>
+                              <Money
+                                data={product.priceRange.minVariantPrice}
+                              />
+                            </small>
+                          </div>
+                        </div>
+                      </Link>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
             </div>
           )}
         </Await>
@@ -120,6 +144,7 @@ const RECOMMENDED_PRODUCTS_QUERY = `#graphql
     id
     title
     handle
+    description
     priceRange {
       minVariantPrice {
         amount
