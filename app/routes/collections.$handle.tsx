@@ -40,8 +40,8 @@ export default function Collection() {
   const {collection} = useLoaderData<typeof loader>();
 
   return (
-    <div className="collection">
-      <h1>{collection.title}</h1>
+    <div className="collection max-w-screen-lg mx-auto px-4 py-12">
+      <h1 className="lowercase text-5xl mb-12">{collection.title}</h1>
       <p className="collection-description">{collection.description}</p>
       <Pagination connection={collection.products}>
         {({nodes, isLoading, PreviousLink, NextLink}) => (
@@ -63,7 +63,7 @@ export default function Collection() {
 
 function ProductsGrid({products}: {products: ProductItemFragment[]}) {
   return (
-    <div className="products-grid">
+    <div className="products-grid grid grid-cols-2 sm:grid-cols-3 gap-x-12 gap-y-28">
       {products.map((product, index) => {
         return (
           <ProductItem
@@ -99,13 +99,12 @@ function ProductItem({
           aspectRatio="1/1"
           data={product.featuredImage}
           loading={loading}
-          sizes="(min-width: 45em) 400px, 100vw"
+          sizes="(min-width: 45em) 300px, 100vw"
+          className="mb-5"
         />
       )}
-      <h4>{product.title}</h4>
-      <small>
-        <Money data={product.priceRange.minVariantPrice} />
-      </small>
+      <h4 className="lowercase text-3xl mb-2">{product.title}</h4>
+      <Money data={product.priceRange.minVariantPrice} />
     </Link>
   );
 }

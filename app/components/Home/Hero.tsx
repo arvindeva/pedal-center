@@ -1,5 +1,6 @@
 import bigMuff from '~/images/big_muff.png';
 import {Button} from '~/components/ui/button';
+import {Link} from '@remix-run/react';
 
 export default function Hero() {
   return (
@@ -19,9 +20,11 @@ export default function Hero() {
             <h2 className="text-lg sm:text-[24px] text-center">
               up to 50% off a large selection
             </h2>
-            <Button className="bg-white text-zinc-900 hover:bg-zinc-400 active:bg-zinc-700 active:text-zinc-200 py-8 text-2xl">
-              shop now
-            </Button>
+            <Link to="/collections/pedals" className="text-center">
+              <Button className="bg-white text-zinc-900 hover:bg-zinc-400 active:bg-zinc-700 active:text-zinc-200 py-8 text-2xl w-full">
+                shop now
+              </Button>
+            </Link>
           </div>
           <div className="hidden sm:block max-w-[360px]">
             <img src={bigMuff} alt="big muff" className="w-full h-auto" />

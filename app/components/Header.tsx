@@ -73,7 +73,7 @@ export function HeaderMenu({
               : item.url;
           return (
             <NavLink
-              className="header-menu-item"
+              className="header-menu-item lowercase"
               end
               key={item.id}
               onClick={closeAside}
@@ -117,39 +117,41 @@ function HeaderCtas({
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Edit profile</SheetTitle>
-              <SheetClose asChild>
-                <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-                  home
-                </NavLink>
-              </SheetClose>
-              <SheetClose asChild>
-                <NavLink
-                  prefetch="intent"
-                  to="/collections/pedals"
-                  style={activeLinkStyle}
-                  end
-                >
-                  pedals
-                </NavLink>
-              </SheetClose>
-              <SheetClose asChild>
-                <NavLink
-                  prefetch="intent"
-                  to="/contact"
-                  style={activeLinkStyle}
-                  end
-                >
-                  contact
-                </NavLink>
-              </SheetClose>
+              <SheetTitle>pedal hub</SheetTitle>
+              <div className="flex flex-col gap-y-8 py-12">
+                <SheetClose asChild>
+                  <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+                    home
+                  </NavLink>
+                </SheetClose>
+                <SheetClose asChild>
+                  <NavLink
+                    prefetch="intent"
+                    to="/collections/pedals"
+                    style={activeLinkStyle}
+                    end
+                  >
+                    pedals
+                  </NavLink>
+                </SheetClose>
+                <SheetClose asChild>
+                  <NavLink
+                    prefetch="intent"
+                    to="/contact"
+                    style={activeLinkStyle}
+                    end
+                  >
+                    contact
+                  </NavLink>
+                </SheetClose>
+              </div>
             </SheetHeader>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4"></div>
               <div className="grid grid-cols-4 items-center gap-4"></div>
             </div>
             <SheetFooter>
-              <Button type="submit">Save changes</Button>
+              <Button type="submit">close</Button>
             </SheetFooter>
           </SheetContent>
         </Sheet>

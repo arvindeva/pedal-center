@@ -4,7 +4,7 @@ import {Button} from '~/components/ui/button';
 export default function ComingSoon() {
   return (
     <div>
-      <div className="bg-black py-24 text-white ">
+      <div className="bg-black py-36 text-white ">
         <div className="mx-auto max-w-screen-lg flex flex-col sm:flex-row justify-between items-center">
           <div className="block max-w-72">
             <img src={melee} alt="big muff" className="w-full h-auto" />

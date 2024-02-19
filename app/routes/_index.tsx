@@ -51,8 +51,8 @@ function FeaturedCollection({
   if (!collection) return null;
   const image = collection?.image;
   return (
-    <section className="">
-      <div className="mx-auto max-w-screen-md text-center flex flex-col gap-y-8 pt-8">
+    <section className="py-24">
+      <div className="mx-auto max-w-screen-md text-center flex flex-col gap-y-16 pt-8">
         <h1 className="text-4xl">explore all our collection</h1>
         <Link
           className="featured-collection"
@@ -71,7 +71,7 @@ function RecommendedProducts({
   products: Promise<RecommendedProductsQuery>;
 }) {
   return (
-    <div className="recommended-products max-w-screen-lg mx-auto px-12 pt-24">
+    <div className="recommended-products max-w-screen-lg mx-auto px-12 py-24">
       <h2 className="text-3xl font-bold mb-6">recommended pedals</h2>
       <Suspense fallback={<div>loading...</div>}>
         <Await resolve={products}>

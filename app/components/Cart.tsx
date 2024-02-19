@@ -3,6 +3,7 @@ import type {CartLineUpdateInput} from '@shopify/hydrogen/storefront-api-types';
 import {Link} from '@remix-run/react';
 import type {CartApiQueryFragment} from 'storefrontapi.generated';
 import {useVariantUrl} from '~/lib/variants';
+import {Button} from './ui/button';
 
 type CartLine = CartApiQueryFragment['lines']['nodes'][0];
 
@@ -53,7 +54,7 @@ function CartLines({
 
   return (
     <div aria-labelledby="cart-lines">
-      <ul>
+      <ul className="flex flex-col gap-y-8">
         {lines.nodes.map((line) => (
           <CartLineItem key={line.id} line={line} layout={layout} />
         ))}
@@ -80,13 +81,13 @@ function CartLineItem({
           alt={title}
           aspectRatio="1/1"
           data={image}
-          height={100}
+          height={120}
           loading="lazy"
-          width={100}
+          width={120}
         />
       )}
 
-      <div>
+      <div className="flex flex-col gap-y-4 lowercase">
         <Link
           prefetch="intent"
           to={lineItemUrl}
@@ -102,7 +103,7 @@ function CartLineItem({
           </p>
         </Link>
         <CartLinePrice line={line} as="span" />
-        <ul>
+        {/* <ul>
           {selectedOptions.map((option) => (
             <li key={option.name}>
               <small>
@@ -110,7 +111,7 @@ function CartLineItem({
               </small>
             </li>
           ))}
-        </ul>
+        </ul> */}
         <CartLineQuantity line={line} />
       </div>
     </li>
@@ -121,9 +122,9 @@ function CartCheckoutActions({checkoutUrl}: {checkoutUrl: string}) {
   if (!checkoutUrl) return null;
 
   return (
-    <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
+    <div className="mb-8">
+      <a href="/checkout" target="_self">
+        <Button>continue to checkout &rarr;</Button>
       </a>
       <br />
     </div>
@@ -144,10 +145,9 @@ export function CartSummary({
 
   return (
     <div aria-labelledby="cart-summary" className={className}>
-      <h4>Totals</h4>
       <dl className="cart-subtotal">
-        <dt>Subtotal</dt>
-        <dd>
+        <dt className="mb-4">total</dt>
+        <dd className="mb-4 ml-4">
           {cost?.subtotalAmount?.amount ? (
             <Money data={cost?.subtotalAmount} />
           ) : (
@@ -167,7 +167,7 @@ function CartLineRemoveButton({lineIds}: {lineIds: string[]}) {
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{lineIds}}
     >
-      <button type="submit">Remove</button>
+      <Button type="submit">remove</Button>
     </CartForm>
   );
 }
@@ -179,30 +179,36 @@ function CartLineQuantity({line}: {line: CartLine}) {
   const nextQuantity = Number((quantity + 1).toFixed(0));
 
   return (
-    <div className="cart-line-quantiy">
-      <small>Quantity: {quantity} &nbsp;&nbsp;</small>
-      <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
-        <button
-          aria-label="Decrease quantity"
-          disabled={quantity <= 1}
-          name="decrease-quantity"
-          value={prevQuantity}
-        >
-          <span>&#8722; </span>
-        </button>
-      </CartLineUpdateButton>
-      &nbsp;
-      <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
-        <button
-          aria-label="Increase quantity"
-          name="increase-quantity"
-          value={nextQuantity}
-        >
-          <span>&#43;</span>
-        </button>
-      </CartLineUpdateButton>
-      &nbsp;
-      <CartLineRemoveButton lineIds={[lineId]} />
+    <div className="cart-line-quantity flex flex-col">
+      <div className="flex flex-row items-center gap-x-2">
+        <CartLineUpdateButton lines={[{id: lineId, quantity: prevQuantity}]}>
+          <Button
+            aria-label="Decrease quantity"
+            disabled={quantity <= 1}
+            name="decrease-quantity"
+            value={prevQuantity}
+            size="icon"
+            variant="outline"
+            className="rounded-full"
+          >
+            <span>&#8722; </span>
+          </Button>
+        </CartLineUpdateButton>
+        {quantity}
+        <CartLineUpdateButton lines={[{id: lineId, quantity: nextQuantity}]}>
+          <Button
+            aria-label="Increase quantity"
+            name="increase-quantity"
+            value={nextQuantity}
+            size="icon"
+            variant="outline"
+            className="rounded-full"
+          >
+            <span>&#43;</span>
+          </Button>
+        </CartLineUpdateButton>
+        <CartLineRemoveButton lineIds={[lineId]} />
+      </div>
     </div>
   );
 }
@@ -290,13 +296,6 @@ function CartDiscounts({
       </dl>
 
       {/* Show an input to apply a discount */}
-      <UpdateDiscountForm discountCodes={codes}>
-        <div>
-          <input type="text" name="discountCode" placeholder="Discount code" />
-          &nbsp;
-          <button type="submit">Apply</button>
-        </div>
-      </UpdateDiscountForm>
     </div>
   );
 }
