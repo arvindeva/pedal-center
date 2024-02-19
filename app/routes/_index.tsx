@@ -7,6 +7,8 @@ import type {
   RecommendedProductsQuery,
 } from 'storefrontapi.generated';
 import Hero from '~/components/Home/Hero';
+import ComingSoon from '~/components/Home/ComingSoon';
+
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +16,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '~/components/ui/carousel';
+import {Button} from '~/components/ui/button';
 
 export const meta: MetaFunction = () => {
   return [{title: 'Pedal Hub | Home'}];
@@ -33,8 +36,9 @@ export default function Homepage() {
   return (
     <div className="home">
       <Hero />
-      <FeaturedCollection collection={data.featuredCollection} />
       <RecommendedProducts products={data.recommendedProducts} />
+      <ComingSoon />
+      <FeaturedCollection collection={data.featuredCollection} />
     </div>
   );
 }
@@ -47,17 +51,17 @@ function FeaturedCollection({
   if (!collection) return null;
   const image = collection?.image;
   return (
-    <Link
-      className="featured-collection"
-      to={`/collections/${collection.handle}`}
-    >
-      {image && (
-        <div className="featured-collection-image">
-          <Image data={image} sizes="100vw" />
-        </div>
-      )}
-      <h1>{collection.title}</h1>
-    </Link>
+    <section className="">
+      <div className="mx-auto max-w-screen-md text-center flex flex-col gap-y-8 pt-8">
+        <h1 className="text-4xl">explore all our collection</h1>
+        <Link
+          className="featured-collection"
+          to={`/collections/${collection.handle}`}
+        >
+          <Button className="text-3xl p-8">explore</Button>
+        </Link>
+      </div>
+    </section>
   );
 }
 
@@ -67,40 +71,50 @@ function RecommendedProducts({
   products: Promise<RecommendedProductsQuery>;
 }) {
   return (
-    <div className="recommended-products max-w-screen-lg mx-auto px-12">
-      <h2>Recommended Productsss</h2>
-      <Suspense fallback={<div>Loading...</div>}>
+    <div className="recommended-products max-w-screen-lg mx-auto px-12 pt-24">
+      <h2 className="text-3xl font-bold mb-6">recommended pedals</h2>
+      <Suspense fallback={<div>loading...</div>}>
         <Await resolve={products}>
           {({products}) => (
             <div>
-              <Carousel className="w-full">
+              <Carousel className="w-full lowercase">
                 <CarouselContent>
                   {products.nodes.map((product, index) => (
                     <CarouselItem key={product.id}>
-                      <Link
-                        key={product.id}
-                        className="recommended-product"
-                        to={`/products/${product.handle}`}
-                      >
-                        <div className="border-zinc-200 border rounded-2xl flex flex-row">
-                          <div className="w-1/2 p-8">
-                            <Image
-                              data={product.images.nodes[0]}
-                              aspectRatio="1/1"
-                              sizes="(min-width: 45em) 20vw, 50vw"
-                            />
-                          </div>
-                          <div className="w-1/2">
-                            <h4>{product.title}</h4>
+                      <div className="border-zinc-900 border flex flex-col sm:flex-row p-4">
+                        <div className="sm:w-1/2 p-4 sm:p-8">
+                          <Image
+                            data={product.images.nodes[0]}
+                            aspectRatio="1/1"
+                            sizes="(min-width: 45em) 20vw, 50vw"
+                          />
+                        </div>
+                        <div className="sm:w-1/2 p-4 flex flex-col justify-between">
+                          <div>
+                            <Link
+                              key={product.id}
+                              className="recommended-product"
+                              to={`/products/${product.handle}`}
+                            >
+                              <h4 className="text-4xl mb-4">{product.title}</h4>
+                            </Link>
                             <p>{product.description}</p>
-                            <small>
-                              <Money
-                                data={product.priceRange.minVariantPrice}
-                              />
-                            </small>
+                          </div>
+                          <div className="text-right flex flex-col gap-y-4">
+                            <Money
+                              data={product.priceRange.minVariantPrice}
+                              className="text-4xl"
+                            />
+                            <Link
+                              key={product.id}
+                              className="w-full"
+                              to={`/products/${product.handle}`}
+                            >
+                              <Button className="w-full">buy now</Button>
+                            </Link>
                           </div>
                         </div>
-                      </Link>
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>

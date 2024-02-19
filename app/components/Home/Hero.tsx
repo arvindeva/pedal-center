@@ -16,7 +16,9 @@ export default function Hero() {
             <h2 className="text-lg sm:text-[24px] text-center">
               up to 50% off a large selection
             </h2>
-            <Button className="">shop now</Button>
+            <Button className="bg-white text-zinc-900 hover:bg-zinc-400 active:bg-zinc-700 active:text-zinc-200">
+              shop now
+            </Button>
           </div>
           <div className="hidden sm:block max-w-72">
             <img src={bigMuff} alt="big muff" className="w-full h-auto" />
