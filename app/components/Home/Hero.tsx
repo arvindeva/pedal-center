@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="bg-black py-44 text-white ">
         <div className="mx-auto max-w-screen-lg flex flex-col sm:flex-row sm:gap-y-4 justify-between items-center">
           <div className="flex flex-col gap-y-12 sm:gap-y-8">
-            <h1 className="text-4xl sm:text-[100px] font-bold text-center">
+            <h1 className="text-5xl sm:text-[100px] font-bold text-center">
               pedal center
             </h1>
             <h1 className="hidden sm:block text-[70px] text-center bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
@@ -21,7 +21,7 @@ export default function Hero() {
               up to 50% off a large selection
             </h2>
             <Link to="/collections/pedals" className="text-center">
-              <Button className="bg-white text-zinc-900 hover:bg-zinc-400 active:bg-zinc-700 active:text-zinc-200 py-8 text-2xl w-full">
+              <Button className="bg-white text-zinc-900 hover:bg-zinc-400 active:bg-zinc-700 active:text-zinc-200 py-8 text-2xl px-8">
                 shop now
               </Button>
             </Link>

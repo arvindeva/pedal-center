@@ -59,7 +59,7 @@ export default function Collection() {
                 'Loading...'
               ) : (
                 <div className="mx-auto text-center">
-                  <span className="text-3xl">Load more ↓</span>
+                  <span className="text-3xl">load more ↓</span>
                 </div>
               )}
             </NextLink>

@@ -82,7 +82,7 @@ function RecommendedProducts({
                 className="w-full lowercase"
                 plugins={[
                   Autoplay({
-                    delay: 3000,
+                    delay: 4000,
                   }),
                 ]}
               >
