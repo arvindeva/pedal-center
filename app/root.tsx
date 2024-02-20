@@ -22,6 +22,9 @@ import favicon from '../public/favicon.svg';
 import resetStyles from './styles/reset.css';
 import appStyles from './styles/app.css';
 import {Layout} from '~/components/Layout';
+import {cssBundleHref} from '@remix-run/css-bundle';
+import type {LinksFunction} from '@remix-run/node'; // or cloudflare/deno
+import '@fontsource-variable/comfortaa/wght.css';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -44,8 +47,9 @@ export const shouldRevalidate: ShouldRevalidateFunction = ({
   return false;
 };
 
-export function links() {
+export const links: LinksFunction = () => {
   return [
+    ...(cssBundleHref ? [{rel: 'stylesheet', href: cssBundleHref}] : []),
     {rel: 'stylesheet', href: resetStyles},
     {rel: 'stylesheet', href: appStyles},
     {
@@ -58,7 +62,7 @@ export function links() {
     },
     {rel: 'icon', type: 'image/svg+xml', href: favicon},
   ];
-}
+};
 
 /**
  * Access the result of the root loader from a React component.
