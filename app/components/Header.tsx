@@ -26,7 +26,7 @@ export function Header({header, isLoggedIn, cart}: HeaderProps) {
     <header className="py-4 sticky top-0 z-10 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ">
       <div className="flex flex-row justify-between  px-4 mx-auto w-full max-w-screen-lg items-center">
         <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-          <strong className="lowercase">{shop.name}</strong>
+          <strong className="lowercase">pedal center</strong>
         </NavLink>
         <HeaderMenu
           menu={menu}
@@ -110,14 +110,14 @@ function HeaderCtas({
             <Button
               variant="outline"
               size="icon"
-              className="block sm:hidden text-3xl"
+              className="block sm:hidden text-3xl border-none"
             >
               ☰
             </Button>
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>pedal hub</SheetTitle>
+              <SheetTitle>pedal center</SheetTitle>
               <div className="flex flex-col gap-y-8 py-12">
                 <SheetClose asChild>
                   <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
@@ -151,7 +151,9 @@ function HeaderCtas({
               <div className="grid grid-cols-4 items-center gap-4"></div>
             </div>
             <SheetFooter>
-              <Button type="submit">close</Button>
+              <SheetClose asChild>
+                <Button type="submit">close</Button>
+              </SheetClose>
             </SheetFooter>
           </SheetContent>
         </Sheet>

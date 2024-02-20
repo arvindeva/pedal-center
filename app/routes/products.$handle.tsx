@@ -29,7 +29,7 @@ import {getVariantUrl} from '~/lib/variants';
 import {Button} from '~/components/ui/button';
 
 export const meta: MetaFunction<typeof loader> = ({data}) => {
-  return [{title: `Hydrogen | ${data?.product.title ?? ''}`}];
+  return [{title: `pedal center | ${data?.product.title.toLowerCase() ?? ''}`}];
 };
 
 export async function loader({params, request, context}: LoaderFunctionArgs) {
@@ -118,7 +118,7 @@ export default function Product() {
   const {product, variants} = useLoaderData<typeof loader>();
   const {selectedVariant} = product;
   return (
-    <div className="py-24">
+    <div className="py-24 min-h-[calc(100vh-90px)]">
       <div className="product max-w-screen-lg mx-auto flex flex-col sm:flex-row">
         <div className="sm:w-1/2 p-8">
           <ProductImage image={selectedVariant?.image} />
@@ -213,15 +213,17 @@ function ProductPrice({
         <>
           <p>Sale</p>
           <br />
-          <div className="product-price-on-sale">
-            {selectedVariant ? <Money data={selectedVariant.price} /> : null}
-            <s>
+          <div className="product-price-on-sale text-4xl">
+            <s className="text-red-600">
               <Money data={selectedVariant.compareAtPrice} />
             </s>
+            {selectedVariant ? <Money data={selectedVariant.price} /> : null}
           </div>
         </>
       ) : (
-        selectedVariant?.price && <Money data={selectedVariant?.price} />
+        <div className="text-4xl">
+          {selectedVariant?.price && <Money data={selectedVariant?.price} />}
+        </div>
       )}
     </div>
   );
@@ -262,7 +264,7 @@ function ProductForm({
             : []
         }
       >
-        {selectedVariant?.availableForSale ? 'Add to cart' : 'Sold out'}
+        {selectedVariant?.availableForSale ? 'add to cart' : 'Sold out'}
       </AddToCartButton>
     </div>
   );
@@ -323,6 +325,7 @@ function AddToCartButton({
             type="submit"
             onClick={onClick}
             disabled={disabled ?? fetcher.state !== 'idle'}
+            className="text-2xl p-6 h-12"
           >
             {children}
           </Button>

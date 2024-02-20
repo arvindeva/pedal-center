@@ -167,7 +167,14 @@ function CartLineRemoveButton({lineIds}: {lineIds: string[]}) {
       action={CartForm.ACTIONS.LinesRemove}
       inputs={{lineIds}}
     >
-      <Button type="submit">remove</Button>
+      <Button
+        type="submit"
+        variant="outline"
+        size="icon"
+        className="rounded-full text-sm border-none underline"
+      >
+        remove
+      </Button>
     </CartForm>
   );
 }
@@ -189,7 +196,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
             value={prevQuantity}
             size="icon"
             variant="outline"
-            className="rounded-full"
+            className="rounded-full border-none"
           >
             <span>&#8722; </span>
           </Button>
@@ -202,7 +209,7 @@ function CartLineQuantity({line}: {line: CartLine}) {
             value={nextQuantity}
             size="icon"
             variant="outline"
-            className="rounded-full"
+            className="rounded-full border-none"
           >
             <span>&#43;</span>
           </Button>
@@ -248,7 +255,7 @@ export function CartEmpty({
   layout?: CartMainProps['layout'];
 }) {
   return (
-    <div hidden={hidden}>
+    <div hidden={hidden} className="lowercase ml-6">
       <br />
       <p>
         Looks like you haven&rsquo;t added anything yet, let&rsquo;s get you
@@ -256,12 +263,13 @@ export function CartEmpty({
       </p>
       <br />
       <Link
-        to="/collections"
+        to="/collections/pedals"
         onClick={() => {
           if (layout === 'aside') {
-            window.location.href = '/collections';
+            window.location.href = '/collections/pedals';
           }
         }}
+        className="bg-black p-4 text-white flex flex-row h-16 items-center"
       >
         Continue shopping →
       </Link>

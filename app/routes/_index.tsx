@@ -19,7 +19,7 @@ import {
 import {Button} from '~/components/ui/button';
 
 export const meta: MetaFunction = () => {
-  return [{title: 'Pedal Hub | Home'}];
+  return [{title: 'pedal center | home'}];
 };
 
 export async function loader({context}: LoaderFunctionArgs) {

@@ -36,11 +36,19 @@ export function Layout({
       <MobileMenuAside menu={header?.menu} shop={header?.shop} />
       {header && <Header header={header} cart={cart} isLoggedIn={isLoggedIn} />}
       <main>{children}</main>
+      <footer>
+        <div className="bg-black text-white text-sm py-12 px-8 text-center flex flex-col gap-y-4">
+          made with ❤️ by arvindeva
+          <p className="text-xs">
+            powered by shopify&apos;s hydrogen framework
+          </p>
+        </div>
+      </footer>
       {/* <Suspense>
         <Await resolve={footer}>
           {(footer) => <Footer menu={footer?.menu} shop={header?.shop} />}
         </Await>
-      </Suspense> */}
+      ❤️</Suspense> */}
     </>
   );
 }
