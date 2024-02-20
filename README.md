@@ -1,6 +1,6 @@
 # Pedal Center Webshop
 
-This is the source code for Pedal Center, a mock effect pedal online store. The site is built using Shopify's Hydrogen Framework for building custom storefront. [Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
+This is the source code for Pedal Center, a mock effect pedal online store. The site is built using Shopify's Hydrogen. Hydrogen is a headless commerce framework. It uses Remix as the web framework. [Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
 
 ## [Live Demo - Click Here](https://pedal-center.vercel.app/)
 
