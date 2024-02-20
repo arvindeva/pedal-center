@@ -17,7 +17,7 @@ export async function loader({request, params, context}: LoaderFunctionArgs) {
   const {handle} = params;
   const {storefront} = context;
   const paginationVariables = getPaginationVariables(request, {
-    pageBy: 8,
+    pageBy: 6,
   });
 
   if (!handle) {
@@ -51,9 +51,21 @@ export default function Collection() {
             </PreviousLink>
             <ProductsGrid products={nodes} />
             <br />
+            <br />
+            <br />
+            <br />
             <NextLink>
-              {isLoading ? 'Loading...' : <span>Load more ↓</span>}
+              {isLoading ? (
+                'Loading...'
+              ) : (
+                <div className="mx-auto text-center">
+                  <span className="text-3xl">Load more ↓</span>
+                </div>
+              )}
             </NextLink>
+            <br />
+            <br />
+            <br />
           </>
         )}
       </Pagination>
@@ -69,7 +81,7 @@ function ProductsGrid({products}: {products: ProductItemFragment[]}) {
           <ProductItem
             key={product.id}
             product={product}
-            loading={index < 8 ? 'eager' : undefined}
+            loading={index < 6 ? 'eager' : undefined}
           />
         );
       })}
