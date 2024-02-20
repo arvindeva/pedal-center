@@ -2,7 +2,7 @@
 
 This is the source code for Pedal Center, a mock effect pedal online store. The site is built using Shopify's Hydrogen Framework for building custom storefront. [Check out Hydrogen docs](https://shopify.dev/custom-storefronts/hydrogen)
 
-## [LIVE DEMO - CLICK HERE](https://pedal-center.vercel.app/)
+## [Live Demo - Click Here](https://pedal-center.vercel.app/)
 
 Click on the link above to go to the webstore.
 
