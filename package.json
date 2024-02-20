@@ -25,6 +25,7 @@
     "@shopify/remix-oxygen": "^2.0.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "embla-carousel-autoplay": "^8.0.0-rc23",
     "embla-carousel-react": "^8.0.0-rc23",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",

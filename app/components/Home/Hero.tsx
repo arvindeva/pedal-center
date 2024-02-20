@@ -11,7 +11,7 @@ export default function Hero() {
             <h1 className="text-4xl sm:text-[100px] font-bold text-center">
               pedal center
             </h1>
-            <h1 className="hidden sm:block text-[80px] text-center bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
+            <h1 className="hidden sm:block text-[70px] text-center bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
               end of season sale
             </h1>
             <h1 className="block sm:hidden text-[40px] text-center bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">

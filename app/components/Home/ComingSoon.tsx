@@ -14,7 +14,7 @@ export default function ComingSoon() {
             <h1 className="block sm:hidden text-5xl font-bold bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
               walrus audio melee
             </h1>
-            <h1 className="hidden sm:block text-[80px] bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
+            <h1 className="hidden sm:block text-[72px] font-black bg-gradient-to-r from-fuchsia-500 via-pink-500 to-red-500 bg-clip-text text-transparent">
               walrus audio melee
             </h1>
             <Button className="bg-white text-zinc-900 hover:bg-zinc-400 active:bg-zinc-700 active:text-zinc-200 w-36">

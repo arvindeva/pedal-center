@@ -17,6 +17,7 @@ import {
   CarouselPrevious,
 } from '~/components/ui/carousel';
 import {Button} from '~/components/ui/button';
+import Autoplay from 'embla-carousel-autoplay';
 
 export const meta: MetaFunction = () => {
   return [{title: 'pedal center | home'}];
@@ -77,7 +78,14 @@ function RecommendedProducts({
         <Await resolve={products}>
           {({products}) => (
             <div>
-              <Carousel className="w-full lowercase">
+              <Carousel
+                className="w-full lowercase"
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                  }),
+                ]}
+              >
                 <CarouselContent>
                   {products.nodes.map((product, index) => (
                     <CarouselItem key={product.id}>
@@ -98,9 +106,11 @@ function RecommendedProducts({
                             >
                               <h4 className="text-4xl mb-4">{product.title}</h4>
                             </Link>
-                            <p>{product.description}</p>
+                            <p className="hidden sm:block">
+                              {product.description}
+                            </p>
                           </div>
-                          <div className="text-right flex flex-col gap-y-4">
+                          <div className="sm:text-right flex flex-col gap-y-4">
                             <Money
                               data={product.priceRange.minVariantPrice}
                               className="text-4xl"
