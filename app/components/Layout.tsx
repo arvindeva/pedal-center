@@ -1,4 +1,4 @@
-import {Await} from '@remix-run/react';
+import {Await, Link} from '@remix-run/react';
 import {Suspense} from 'react';
 import type {
   CartApiQueryFragment,
@@ -38,7 +38,20 @@ export function Layout({
       <main>{children}</main>
       <footer>
         <div className="bg-black text-white text-sm py-12 px-8 text-center flex flex-col gap-y-4">
-          made with ❤️ by arvindeva
+          <span>
+            made by{' '}
+            <Link to="https://arvindeva.dev" className="underline">
+              arvindeva
+            </Link>
+            . website{' '}
+            <Link
+              to="https://github.com/arvindeva/pedal-center"
+              className="underline active:text-blue-700"
+            >
+              source code
+            </Link>
+          </span>
+
           <p className="text-xs">
             powered by shopify&apos;s hydrogen framework
           </p>
